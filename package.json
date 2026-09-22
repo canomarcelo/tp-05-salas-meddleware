@@ -1,0 +1,21 @@
+{
+  "name": "tp-05-salas-meddleware",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node --watch ./src/index.js",
+    "check": "node --check src/index.js && node --check src/archivos.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "ejs": "^6.0.1",
+    "express": "^5.2.1",
+    "express-ejs-layouts": "^2.5.1",
+    "morgan": "^1.12.1"
+  }
+}

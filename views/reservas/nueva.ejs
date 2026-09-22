@@ -1,0 +1,35 @@
+<section class="panel-formulario">
+  <p class="etiqueta">NUEVA RESERVA</p>
+  <h1><%= titulo %></h1>
+
+  <% if (error) { %>
+    <p class="error" role="alert"><%= error %></p>
+  <% } %>
+
+  <form action="/reservas" method="post" class="formulario">
+    <label for="nombre">Nombre</label>
+    <input id="nombre" name="nombre" value="<%= valores.nombre ?? '' %>" required />
+
+    <label for="fecha">Fecha</label>
+    <input id="fecha" name="fecha" type="date" value="<%= valores.fecha ?? '' %>" required />
+
+    <label for="horario">Horario</label>
+    <input id="horario" name="horario" type="time" value="<%= valores.horario ?? '' %>" required />
+
+    <label for="sala">Sala</label>
+    <select id="sala" name="sala" required>
+      <option value="">Seleccioná una sala</option>
+      <% salas.forEach((sala) => { %>
+        <option value="<%= sala.nombre %>" <%= (valores.sala ?? '') === sala.nombre ? 'selected' : '' %>><%= sala.nombre %></option>
+      <% }) %>
+    </select>
+
+    <label for="participantes">Participantes</label>
+    <input id="participantes" name="participantes" type="number" min="1" step="1" value="<%= valores.participantes ?? '' %>" required />
+
+    <label for="descripcion">Descripción</label>
+    <textarea id="descripcion" name="descripcion" rows="5" required><%= valores.descripcion ?? '' %></textarea>
+
+    <button type="submit">Guardar reserva</button>
+  </form>
+</section>
