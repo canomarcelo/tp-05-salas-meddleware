@@ -1,5 +1,5 @@
 <section class="panel-formulario">
-  <p class="etiqueta">NUEVA RESERVA</p>
+  <p class="etiqueta"><%= seccion %></p>
   <h1><%= titulo %></h1>
 
   <% if (error) { %>
@@ -7,28 +7,39 @@
   <% } %>
 
   <form action="/reservas" method="post" class="formulario">
-    <label for="nombre">Nombre</label>
-    <input id="nombre" name="nombre" value="<%= valores.nombre ?? '' %>" required />
+    <label for="estudiante">Estudiante</label>
+    <input id="estudiante" name="estudiante" value="<%= valores.estudiante ?? '' %>" required />
 
-    <label for="fecha">Fecha</label>
-    <input id="fecha" name="fecha" type="date" value="<%= valores.fecha ?? '' %>" required />
-
-    <label for="horario">Horario</label>
-    <input id="horario" name="horario" type="time" value="<%= valores.horario ?? '' %>" required />
+    <label for="email">Email</label>
+    <input id="email" name="email" type="email" value="<%= valores.email ?? '' %>" required />
 
     <label for="sala">Sala</label>
     <select id="sala" name="sala" required>
       <option value="">Seleccioná una sala</option>
+      <% if (valores.sala && !salas.includes(valores.sala)) { %>
+        <option value="<%= valores.sala %>" selected><%= valores.sala %> (no permitida)</option>
+      <% } %>
       <% salas.forEach((sala) => { %>
-        <option value="<%= sala.nombre %>" <%= (valores.sala ?? '') === sala.nombre ? 'selected' : '' %>><%= sala.nombre %></option>
+        <option value="<%= sala %>" <%= (valores.sala ?? '') === sala ? 'selected' : '' %>><%= sala %></option>
       <% }) %>
     </select>
 
-    <label for="participantes">Participantes</label>
-    <input id="participantes" name="participantes" type="number" min="1" step="1" value="<%= valores.participantes ?? '' %>" required />
+    <label for="fecha">Fecha</label>
+    <input id="fecha" name="fecha" type="date" value="<%= valores.fecha ?? '' %>" required />
 
-    <label for="descripcion">Descripción</label>
-    <textarea id="descripcion" name="descripcion" rows="5" required><%= valores.descripcion ?? '' %></textarea>
+    <label for="turno">Turno</label>
+    <select id="turno" name="turno" required>
+      <option value="">Seleccioná un turno</option>
+      <% if (valores.turno && !turnos.includes(valores.turno)) { %>
+        <option value="<%= valores.turno %>" selected><%= valores.turno %> (no permitido)</option>
+      <% } %>
+      <% turnos.forEach((turno) => { %>
+        <option value="<%= turno %>" <%= (valores.turno ?? '') === turno ? 'selected' : '' %>><%= turno %></option>
+      <% }) %>
+    </select>
+
+    <label for="personas">Personas</label>
+    <input id="personas" name="personas" type="number" min="1" max="6" step="1" value="<%= valores.personas ?? '' %>" required />
 
     <button type="submit">Guardar reserva</button>
   </form>

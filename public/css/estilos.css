@@ -30,6 +30,15 @@ body {
   font-size: 1.1rem;
 }
 
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid #f59e0b;
+  outline-offset: 3px;
+}
+
 nav {
   display: flex;
   gap: 1rem;
@@ -67,6 +76,10 @@ nav a {
   text-decoration: none;
   font-weight: 600;
   margin-top: 0.5rem;
+}
+
+.boton-secundario {
+  background: #0f766e;
 }
 
 .cabecera-pagina {
@@ -144,4 +157,21 @@ nav a {
   color: #475569;
   padding: 1rem;
   margin-top: 2rem;
+}
+
+.solicitud-id {
+  font-size: 0.85em;
+  opacity: 0.8;
+}
+
+@media (max-width: 600px) {
+  .contenedor-nav,
+  .cabecera-pagina {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  nav {
+    flex-wrap: wrap;
+  }
 }
